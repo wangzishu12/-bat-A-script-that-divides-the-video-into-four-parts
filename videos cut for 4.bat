@@ -122,19 +122,19 @@ set "num_i=1"
 
         echo 视频已成功切割并保存为 "%export_name%.%export_format%"。
 
-        REM 检查是否存在 videos文件夹，如果不存在则创建
-        if not exist "videos" (
-            mkdir "videos"
-            echo 创建了  videos  文件夹。
+        REM 检查是否存在 !filename:~0,-4! 文件夹，如果不存在则创建
+        if not exist "!filename:~0,-4!" (
+            mkdir "!filename:~0,-4!"
+            echo 创建了  !filename:~0,-4!  文件夹。
         )
 
-        REM 将剪切好的视频移动到  videos 文件夹
-        move /y "%export_name%.%export_format%" "videos\"
+        REM 将剪切好的视频移动到  !filename:~0,-4! 文件夹
+        move /y "%export_name%.%export_format%" "!filename:~0,-4!\"
 
-        echo 视频已成功移动到 "videos" 文件夹中。
+        echo 视频已成功移动到 "!filename:~0,-4!" 文件夹中。
 
         REM 更改视频名称
-        ren "videos\%export_name%.%export_format%" "%export_name%.%export_format%"
+        ren "!filename:~0,-4!\%export_name%.%export_format%" "%export_name%.%export_format%"
 
         echo 视频名称已成功更改为 "%export_name%.%export_format%"。
 
